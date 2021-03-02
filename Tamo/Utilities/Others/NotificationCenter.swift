@@ -11,6 +11,9 @@ import Foundation
 let notificationKeyToGetUserdetails = "notificationKeyToGetUserdetails"
 let notificationObserverToGetUserdetails = Notification.Name(rawValue: notificationKeyToGetUserdetails)
 
+let notificationKeyToGetEvent = "notificationKeyToGetEvent"
+let notificationObserverToGetEvent = Notification.Name(rawValue: notificationKeyToGetEvent)
+
 func removeNotificationObserver(viewController: Any) {
     NotificationCenter.default.removeObserver(viewController)
 }

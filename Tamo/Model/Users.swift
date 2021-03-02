@@ -8,7 +8,6 @@
 import Foundation
 
 struct Users: Codable {
-    
     let userId: String?
     let authToken: String?
     let email: String?

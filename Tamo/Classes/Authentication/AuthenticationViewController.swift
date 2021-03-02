@@ -111,7 +111,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
             
         } else {
             activityIndicator.startAnimating()
-            GetRequest.shared.retrieveDataFromUserTable()
+            GetRequest.shared.retrieveDataFromUserList()
             givenEmail = self.emailTextField.text!
             givenPassword = self.passwordTextField.text!
         }
@@ -130,8 +130,8 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
     
     func saveUserIntoCoreData(user: Users) {
         UserDefaults.standard.set(user.authToken, forKey: "authToken")
-        UserDefaults.standard.set(user.userId, forKey: "userId")
-
+        UserDefaults.standard.set(user.userId, forKey: "userID")
+        
         let dic = ["userId": user.userId!,
                    "authToken": user.authToken!,
                     "email": user.email!,
@@ -142,10 +142,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         
         CoreDataService.shared.saveUser(object: dic)
         self.activityIndicator.stopAnimating()
-        
-        let dayScheduleViewController = Storyboards.DayScheduleVC.controller as! DayScheduleViewController
-        dayScheduleViewController.user = user
-        self.pushViewController(T: dayScheduleViewController)
+        CommonService.shared.gotoEventsViewController()
     }
     
     deinit {

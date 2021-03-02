@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E9A7225EEBCFA002C4CA6 /* CommonService.swift */; };
 		7323F58A25E93825004E8406 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58125E93825004E8406 /* ImageCache.swift */; };
 		7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58225E93825004E8406 /* UIImageView+Extensions.swift */; };
 		7323F58C25E93825004E8406 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58325E93825004E8406 /* UIButton+Extensions.swift */; };
@@ -31,8 +32,9 @@
 		73C5666F25E8012F00A27376 /* TamoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5666E25E8012F00A27376 /* TamoTests.swift */; };
 		73C5667A25E8012F00A27376 /* TamoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5667925E8012F00A27376 /* TamoUITests.swift */; };
 		73C5669925E80AD700A27376 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5669825E80AD700A27376 /* AuthenticationViewController.swift */; };
-		73C566A025E80C4F00A27376 /* DayScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5669F25E80C4F00A27376 /* DayScheduleViewController.swift */; };
-		73C566A825E80C6000A27376 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C566A725E80C6000A27376 /* EventDetailsViewController.swift */; };
+		73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5669F25E80C4F00A27376 /* EventsViewController.swift */; };
+		73C566A825E80C6000A27376 /* EventsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C566A725E80C6000A27376 /* EventsDetailsViewController.swift */; };
+		73DEF9C025EEABE300778976 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DEF9BF25EEABE300778976 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		731E9A7225EEBCFA002C4CA6 /* CommonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonService.swift; sourceTree = "<group>"; };
 		7323F58125E93825004E8406 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		7323F58225E93825004E8406 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		7323F58325E93825004E8406 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
@@ -83,8 +86,9 @@
 		73C5667925E8012F00A27376 /* TamoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamoUITests.swift; sourceTree = "<group>"; };
 		73C5667B25E8012F00A27376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73C5669825E80AD700A27376 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		73C5669F25E80C4F00A27376 /* DayScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScheduleViewController.swift; sourceTree = "<group>"; };
-		73C566A725E80C6000A27376 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		73C5669F25E80C4F00A27376 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		73C566A725E80C6000A27376 /* EventsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetailsViewController.swift; sourceTree = "<group>"; };
+		73DEF9BF25EEABE300778976 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				7323F59925E9425C004E8406 /* Users.swift */,
+				73DEF9BF25EEABE300778976 /* Events.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				7323F5B025E95AE5004E8406 /* NotificationCenter.swift */,
+				731E9A7225EEBCFA002C4CA6 /* CommonService.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 				7323F5A125E943CB004E8406 /* API */,
 				7323F59825E941E1004E8406 /* Model */,
 				7323F55625E9372E004E8406 /* Utilities */,
+				73DEF9BE25EEAB7300778976 /* Managers */,
 				73C5669025E80A2F00A27376 /* Classes */,
 				73C5665A25E8012B00A27376 /* Main.storyboard */,
 				73C5666025E8012F00A27376 /* Assets.xcassets */,
@@ -247,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				73C5669125E80A3600A27376 /* Authentication */,
-				73C5669D25E80BE800A27376 /* DaySchedule */,
+				73C5669D25E80BE800A27376 /* Events */,
 				73C5669E25E80BFF00A27376 /* EventDetails */,
 			);
 			path = Classes;
@@ -256,26 +263,33 @@
 		73C5669125E80A3600A27376 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				73694A7225EC4A310083CD74 /* AuthenticationManager.swift */,
 				73C5669825E80AD700A27376 /* AuthenticationViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		73C5669D25E80BE800A27376 /* DaySchedule */ = {
+		73C5669D25E80BE800A27376 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				73C5669F25E80C4F00A27376 /* DayScheduleViewController.swift */,
+				73C5669F25E80C4F00A27376 /* EventsViewController.swift */,
 			);
-			path = DaySchedule;
+			path = Events;
 			sourceTree = "<group>";
 		};
 		73C5669E25E80BFF00A27376 /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
-				73C566A725E80C6000A27376 /* EventDetailsViewController.swift */,
+				73C566A725E80C6000A27376 /* EventsDetailsViewController.swift */,
 			);
 			path = EventDetails;
+			sourceTree = "<group>";
+		};
+		73DEF9BE25EEAB7300778976 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				73694A7225EC4A310083CD74 /* AuthenticationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,11 +434,13 @@
 				7323F59025E93825004E8406 /* String+Extension.swift in Sources */,
 				7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */,
 				7323F59A25E9425C004E8406 /* Users.swift in Sources */,
-				73C566A025E80C4F00A27376 /* DayScheduleViewController.swift in Sources */,
-				73C566A825E80C6000A27376 /* EventDetailsViewController.swift in Sources */,
+				73DEF9C025EEABE300778976 /* Events.swift in Sources */,
+				73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */,
+				73C566A825E80C6000A27376 /* EventsDetailsViewController.swift in Sources */,
 				73C5665525E8012B00A27376 /* AppDelegate.swift in Sources */,
 				7323F59125E93825004E8406 /* StoryboardRouter.swift in Sources */,
 				7323F5AB25E94417004E8406 /* PostRequest.swift in Sources */,
+				731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */,
 				7323F5A325E943F7004E8406 /* GetRequest.swift in Sources */,
 				73C5669925E80AD700A27376 /* AuthenticationViewController.swift in Sources */,
 				73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */,

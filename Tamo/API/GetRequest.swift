@@ -7,14 +7,14 @@
 
 import Foundation
 
-let getDataURL = "https://6033d74f843b150017931b4a.mockapi.io/api/v1/authenticate"
+let userDataURL = "https://6033d74f843b150017931b4a.mockapi.io/api/v1/authenticate"
 
 class GetRequest {
     static let shared = GetRequest()
     private init() { }
     
-    func retrieveDataFromUserTable() {
-        guard let url = URL(string: getDataURL) else { return }
+    func retrieveDataFromUserList() {
+        guard let url = URL(string: userDataURL) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if let data = data {
@@ -31,4 +31,24 @@ class GetRequest {
             
         }.resume()
     }
+    
+    func retrieveDataFromEventList(userID: String) {
+        let eventDataURL = "https://6033d74f843b150017931b4a.mockapi.io/api/v1/authenticate/\(String(describing: userID))/events"
+        guard let url = URL(string: eventDataURL) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                do {
+                    let events = try JSONDecoder().decode([Events].self, from: data)
+                    let notificationDic = ["response": events]
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEvent), object: error, userInfo: notificationDic)
+                } catch let error {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEvent), object: error.localizedDescription, userInfo: nil)
+                }
+            } else if let error = error {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEvent), object: error.localizedDescription, userInfo: nil)
+            }
+            
+        }.resume()
+    }
 }
+

@@ -121,25 +121,38 @@
             </objects>
             <point key="canvasLocation" x="762.61682242990651" y="60.90712742980562"/>
         </scene>
-        <!--Day Schedule View Controller-->
+        <!--Events View Controller-->
         <scene sceneID="oD4-WO-vHt">
             <objects>
-                <viewController storyboardIdentifier="DayScheduleViewController" id="Nsl-hM-vG2" customClass="DayScheduleViewController" customModule="Tamo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsViewController" id="Nsl-hM-vG2" customClass="EventsViewController" customModule="Tamo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gid-Oa-34M">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zzK-XF-aNh">
+                                <rect key="frame" x="204" y="458" width="20" height="20"/>
+                                <color key="color" red="0.50980392159999999" green="0.6705882353" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ukn-TW-dA5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zzK-XF-aNh" firstAttribute="centerY" secondItem="ukn-TW-dA5" secondAttribute="centerY" id="Swz-Cf-nED"/>
+                            <constraint firstItem="zzK-XF-aNh" firstAttribute="centerX" secondItem="ukn-TW-dA5" secondAttribute="centerX" id="WEF-8W-acf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="zzK-XF-aNh" id="bJr-zp-jEg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BIF-vp-TBT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="764" y="788"/>
         </scene>
-        <!--Event Details View Controller-->
+        <!--Events Details View Controller-->
         <scene sceneID="wYT-Fb-eaN">
             <objects>
-                <viewController storyboardIdentifier="EventDetailsViewController" id="Oe7-KY-t3T" customClass="EventDetailsViewController" customModule="Tamo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsDetailsViewController" id="Oe7-KY-t3T" customClass="EventsDetailsViewController" customModule="Tamo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="glz-Ht-cN2">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

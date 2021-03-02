@@ -19,8 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
+    func userLoggedInStatusCheckAndRedirection() {
+        if UserDefaults.standard.string(forKey: "authToken") != nil {
+            CommonService.shared.gotoEventsViewController()
+        } else {
+            CommonService.shared.gotoSignInViewController()
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         navigationBarAppearence()
+        userLoggedInStatusCheckAndRedirection()
         return true
     }
 
