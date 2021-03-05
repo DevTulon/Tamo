@@ -8,6 +8,7 @@
 import UIKit
 
 class EventsTableViewCell: UITableViewCell {
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var eventTypeLabel: UILabel!
     @IBOutlet weak var eventSubjectLabel: UILabel!
@@ -84,7 +85,6 @@ class EventsTableViewCell: UITableViewCell {
         var hour = Int(startTm.prefix(2))
         var min = Int(startTm.components(separatedBy: ":")[1])
         let randomNum = Int(arc4random_uniform(49) + 10)
-        print("randomNum \(randomNum)")
         if randomNum + min! > 60 {
             min = (randomNum + min!) - 60
             hour = hour! + 1
@@ -105,8 +105,17 @@ class EventsTableViewCell: UITableViewCell {
     
     func interfaceUpdate() {
         CommonService.shared.cornerRadius(object: containerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
+        //CommonService.shared.cornerRadius(object: shadowView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         CommonService.shared.cornerRadius(object: hasLabel, cornerRadius: 10, borderWidth: 0.0, borderColor: .clear)
+        dropShadow(viewShadow: self.shadowView)
         layoutIfNeeded()
+    }
+    
+    func dropShadow(viewShadow: UIView) {
+        viewShadow.layer.shadowColor = UIColor.black.cgColor
+        viewShadow.layer.shadowOpacity = 0.4
+        viewShadow.layer.shadowOffset = CGSize.zero
+        viewShadow.layer.shadowRadius = 3
     }
     
     override func awakeFromNib() {
