@@ -24,6 +24,7 @@
 		732B89A425ED5DBA009455D4 /* UserCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732B89A225ED5DBA009455D4 /* UserCD+CoreDataProperties.swift */; };
 		732B89AC25ED5DFA009455D4 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732B89AB25ED5DFA009455D4 /* CoreDataService.swift */; };
 		73694A7325EC4A310083CD74 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73694A7225EC4A310083CD74 /* AuthenticationManager.swift */; };
+		73B5835625EFA74100F71EC3 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5835525EFA74100F71EC3 /* EventsTableViewCell.swift */; };
 		73C5665525E8012B00A27376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665425E8012B00A27376 /* AppDelegate.swift */; };
 		73C5665C25E8012B00A27376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5665A25E8012B00A27376 /* Main.storyboard */; };
 		73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665D25E8012B00A27376 /* Tamo.xcdatamodeld */; };
@@ -72,6 +73,7 @@
 		732B89A225ED5DBA009455D4 /* UserCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		732B89AB25ED5DFA009455D4 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataService.swift; path = Tamo/Utilities/CoreData/CoreDataService.swift; sourceTree = SOURCE_ROOT; };
 		73694A7225EC4A310083CD74 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		73B5835525EFA74100F71EC3 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		73C5665125E8012B00A27376 /* Tamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5665425E8012B00A27376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C5665B25E8012B00A27376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		73C5669D25E80BE800A27376 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				73B5835525EFA74100F71EC3 /* EventsTableViewCell.swift */,
 				73C5669F25E80C4F00A27376 /* EventsViewController.swift */,
 			);
 			path = Events;
@@ -426,6 +429,7 @@
 				7323F58F25E93825004E8406 /* UIViewController+Extension.swift in Sources */,
 				7323F58C25E93825004E8406 /* UIButton+Extensions.swift in Sources */,
 				732B89A425ED5DBA009455D4 /* UserCD+CoreDataProperties.swift in Sources */,
+				73B5835625EFA74100F71EC3 /* EventsTableViewCell.swift in Sources */,
 				73694A7325EC4A310083CD74 /* AuthenticationManager.swift in Sources */,
 				7323F5B125E95AE5004E8406 /* NotificationCenter.swift in Sources */,
 				732B89A325ED5DBA009455D4 /* UserCD+CoreDataClass.swift in Sources */,

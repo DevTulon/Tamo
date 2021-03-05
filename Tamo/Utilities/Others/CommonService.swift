@@ -25,4 +25,12 @@ class CommonService {
         let navigationController = UINavigationController(rootViewController: authenticationViewController)
         appdelegate.window!.rootViewController = navigationController
     }
+    
+    func cornerRadius<T: UIView>(object: T, cornerRadius: CGFloat, borderWidth: CGFloat, borderColor: UIColor) {
+        object.layer.borderWidth = borderWidth
+        object.layer.masksToBounds = false
+        object.layer.borderColor = borderColor.cgColor
+        object.layer.cornerRadius = cornerRadius
+        object.clipsToBounds = true
+    }
 }
