@@ -31,6 +31,13 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     
+    @IBOutlet weak var sixtyMinSeparatorContainerView: UIView!
+    @IBOutlet weak var lastEventsEndTimeLabel: UILabel!
+    @IBOutlet weak var nextEventsStartTimeLabel: UILabel!
+    
+    @IBOutlet weak var shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint: NSLayoutConstraint! //15
+    @IBOutlet weak var sixtyMinSeparatorContainerViewHeightConstraint: NSLayoutConstraint! //40
+    
     func handleBottomViewElements(events: Events) {
         if events.hasLabel == true {
             hasLabelViewWidthConstraint.constant = 65
@@ -72,27 +79,20 @@ class EventsTableViewCell: UITableViewCell {
         layoutIfNeeded()
     }
     
-    func setStartAndEndTime(events: Events) {
-        if let initialDate = events.eventDate {
-            let cutFromT = initialDate.components(separatedBy: "T")[1]
-            let startTm = cutFromT.prefix(5)
-            startTime.text = String(startTm)
-            endTime.text = getEndTime(startTm: String(startTm))
-        }
-    }
-    
-    func getEndTime(startTm: String) -> String {
-        var hour = Int(startTm.prefix(2))
-        var min = Int(startTm.components(separatedBy: ":")[1])
-        let randomNum = Int(arc4random_uniform(49) + 10)
-        if randomNum + min! > 60 {
-            min = (randomNum + min!) - 60
-            hour = hour! + 1
+    func handleSixtyMinSeparatorView(shouldSixtyMinSeparatorContainerViewHidden: Bool, lastEventsEndTime: String, nextEventsStartTime: String) {
+        if shouldSixtyMinSeparatorContainerViewHidden == true {
+            shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint.constant = 0
+            sixtyMinSeparatorContainerViewHeightConstraint.constant = 0
+            lastEventsEndTimeLabel.text = lastEventsEndTime
+            nextEventsStartTimeLabel.text = nextEventsStartTime
         } else {
-            min = min! + randomNum
+            shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint.constant = 15
+            sixtyMinSeparatorContainerViewHeightConstraint.constant = 40
+            lastEventsEndTimeLabel.text = lastEventsEndTime
+            nextEventsStartTimeLabel.text = nextEventsStartTime
         }
-
-        return "\(hour!):\(min!)"
+        
+        layoutIfNeeded()
     }
     
     func setUpCell(events: Events) {
@@ -100,13 +100,14 @@ class EventsTableViewCell: UITableViewCell {
         eventSubjectLabel.text = events.eventSubject
         eventAddressLabel.text = events.eventAddress
         handleBottomViewElements(events: events)
-        setStartAndEndTime(events: events)
+        startTime.text = events.eventStartTime
+        endTime.text = events.eventEndTime
     }
     
     func interfaceUpdate() {
         CommonService.shared.cornerRadius(object: containerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
-        //CommonService.shared.cornerRadius(object: shadowView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         CommonService.shared.cornerRadius(object: hasLabel, cornerRadius: 10, borderWidth: 0.0, borderColor: .clear)
+        CommonService.shared.cornerRadius(object: sixtyMinSeparatorContainerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         dropShadow(viewShadow: self.shadowView)
         layoutIfNeeded()
     }

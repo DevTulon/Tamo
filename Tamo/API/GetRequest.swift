@@ -50,5 +50,24 @@ class GetRequest {
             
         }.resume()
     }
+    
+    func retrieveDataFromEventDetailsList(userID: String, eventId: String) {
+        let eventDetailsDataURL = "https://6033d74f843b150017931b4a.mockapi.io/api/v1/authenticate/\(String(describing: userID))/events/\(String(describing: eventId))/event"
+        guard let url = URL(string: eventDetailsDataURL) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                do {
+                    let events = try JSONDecoder().decode([EventsDetails].self, from: data)
+                    let notificationDic = ["response": events]
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEventDetails), object: error, userInfo: notificationDic)
+                } catch let error {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEventDetails), object: error.localizedDescription, userInfo: nil)
+                }
+            } else if let error = error {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: notificationKeyToGetEventDetails), object: error.localizedDescription, userInfo: nil)
+            }
+            
+        }.resume()
+    }
 }
 
