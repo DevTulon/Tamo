@@ -28,6 +28,7 @@
 		732C2A3425F525B500C77DB4 /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C2A3225F525B500C77DB4 /* EventsTableViewCell.swift */; };
 		732C2A3525F525B500C77DB4 /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */; };
 		73694A7325EC4A310083CD74 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73694A7225EC4A310083CD74 /* AuthenticationManager.swift */; };
+		73B2262125F5623600D48FA1 /* UIImage+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2262025F5623600D48FA1 /* UIImage+Extention.swift */; };
 		73C5665525E8012B00A27376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665425E8012B00A27376 /* AppDelegate.swift */; };
 		73C5665C25E8012B00A27376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5665A25E8012B00A27376 /* Main.storyboard */; };
 		73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665D25E8012B00A27376 /* Tamo.xcdatamodeld */; };
@@ -80,6 +81,7 @@
 		732C2A3225F525B500C77DB4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		73694A7225EC4A310083CD74 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		73B2262025F5623600D48FA1 /* UIImage+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extention.swift"; sourceTree = "<group>"; };
 		73C5665125E8012B00A27376 /* Tamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5665425E8012B00A27376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C5665B25E8012B00A27376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				7323F58525E93825004E8406 /* Color+Extenstion.swift */,
 				7323F58625E93825004E8406 /* UIViewController+Extension.swift */,
 				7323F58725E93825004E8406 /* String+Extension.swift */,
+				73B2262025F5623600D48FA1 /* UIImage+Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				7323F58E25E93825004E8406 /* Color+Extenstion.swift in Sources */,
 				7323F59025E93825004E8406 /* String+Extension.swift in Sources */,
 				7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */,
+				73B2262125F5623600D48FA1 /* UIImage+Extention.swift in Sources */,
 				7323F59A25E9425C004E8406 /* Users.swift in Sources */,
 				73DEF9C025EEABE300778976 /* Events.swift in Sources */,
 				73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */,

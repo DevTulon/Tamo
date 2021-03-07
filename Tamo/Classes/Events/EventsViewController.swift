@@ -15,6 +15,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet weak var navBarButton: UIBarButtonItem!
     
     func createNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(notificationActionToEvent(notification:)), name: notificationObserverToGetEvent, object: nil)
@@ -50,6 +51,45 @@ class EventsViewController: UIViewController {
         }
     }
     
+    func setNavBarButtonProfilePic() {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.imageView?.contentMode = .scaleAspectFit
+        print("(user?.avatar)! \((user?.avatar)!)")
+//        let imageData = try? Data(contentsOf: URL(string : "https://www.w3schools.com/howto/img_avatar.png")!)
+        let imageData = try? Data(contentsOf: URL(string : (user?.avatar)!)!)
+
+        if let imageData = imageData, let image =  UIImage(data: imageData)?.resizeImage(to: button.frame.size) {
+            button.setBackgroundImage(image, for: .normal)
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    }
+    
+    func fetchUserFromCoreData() {
+        usersArray.removeAll()
+        usersArray = CoreDataService.shared.getUser()
+        DispatchQueue.global(qos: .userInteractive).async {
+            for currentUser in self.usersArray {
+                self.prepareTableData(currentUser: currentUser)
+            }
+        }
+    }
+    
+    func prepareTableData(currentUser: UserCD) {
+        if let cuserId = currentUser.userId,
+            let cauthToken = currentUser.authToken,
+            let cemail = currentUser.email,
+            let cpassword = currentUser.password,
+            let cavatar = currentUser.avatar,
+            let cfirstName = currentUser.firstName,
+            let clastName = currentUser.lastName {
+            self.user = Users(userId: cuserId, authToken: cauthToken, email: cemail, password: cpassword, avatar: cavatar, firstName: cfirstName, lastName: clastName)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
@@ -59,6 +99,8 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         createNotificationObserver()
         registerNib()
+        fetchUserFromCoreData()
+        setNavBarButtonProfilePic()
         activityIndicator.startAnimating()
         GetRequest.shared.retrieveDataFromEventList(userID: UserDefaults.standard.string(forKey: "userID")!)
     }
