@@ -58,6 +58,7 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createNotificationObserver()
+        registerNib()
         activityIndicator.startAnimating()
         GetRequest.shared.retrieveDataFromEventList(userID: UserDefaults.standard.string(forKey: "userID")!)
     }
@@ -131,6 +132,11 @@ class EventsViewController: UIViewController {
 
         let difference = calendar.dateComponents([.minute], from: previousEventsEndTimeComponents, to: currentEventsStartTimeComponents).minute!
         return difference
+    }
+    
+    func registerNib() {
+        let eventsTableViewCell = UINib(nibName: "EventsTableViewCell", bundle: nil)
+        eventsTableView.register(eventsTableViewCell, forCellReuseIdentifier: "EventsTableViewCell")
     }
 }
 

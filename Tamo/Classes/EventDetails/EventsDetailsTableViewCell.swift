@@ -9,11 +9,9 @@ import UIKit
 
 class EventsDetailsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
     func setUpCell(eventsDetails: EventsDetails) {
-        idLabel.text = eventsDetails.id
         commentLabel.text = eventsDetails.eventComment
     }
     

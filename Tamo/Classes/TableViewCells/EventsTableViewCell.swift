@@ -2,7 +2,7 @@
 //  EventsTableViewCell.swift
 //  Tamo
 //
-//  Created by Reashed Tulon on 3/3/21.
+//  Created by Reashed Tulon on 7/3/21.
 //
 
 import UIKit
