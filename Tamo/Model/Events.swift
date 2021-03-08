@@ -21,8 +21,9 @@ struct Events: Codable {
     let hasVideo: Bool?
     let rating: String?
     let important: Bool?
+    let isCurrentEvent: Bool?
     
-    init(id: String, userId: String, eventDate: String, eventStartTime: String, eventEndTime: String, eventType: String, eventSubject: String, eventAddress: String, hasAttachment: Bool, hasLabel: Bool, hasVideo: Bool, rating: String, important: Bool) {
+    init(id: String, userId: String, eventDate: String, eventStartTime: String, eventEndTime: String, eventType: String, eventSubject: String, eventAddress: String, hasAttachment: Bool, hasLabel: Bool, hasVideo: Bool, rating: String, important: Bool, isCurrentEvent: Bool) {
         self.id = id
         self.userId = userId
         self.eventDate = eventDate
@@ -36,5 +37,6 @@ struct Events: Codable {
         self.hasVideo = hasVideo
         self.rating = rating
         self.important = important
+        self.isCurrentEvent = isCurrentEvent
     }
 }

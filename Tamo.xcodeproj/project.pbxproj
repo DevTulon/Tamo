@@ -40,6 +40,9 @@
 		73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5669F25E80C4F00A27376 /* EventsViewController.swift */; };
 		73C566A825E80C6000A27376 /* EventsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C566A725E80C6000A27376 /* EventsDetailsViewController.swift */; };
 		73DEF9C025EEABE300778976 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DEF9BF25EEABE300778976 /* Events.swift */; };
+		73EA472725F5728A00090936 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA472625F5728A00090936 /* DateManager.swift */; };
+		73EA472C25F5815700090936 /* UINavigationBar+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA472B25F5815700090936 /* UINavigationBar+Extention.swift */; };
+		73EA473125F58B3300090936 /* Date+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA473025F58B3300090936 /* Date+Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		73C5669F25E80C4F00A27376 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		73C566A725E80C6000A27376 /* EventsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetailsViewController.swift; sourceTree = "<group>"; };
 		73DEF9BF25EEABE300778976 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		73EA472625F5728A00090936 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		73EA472B25F5815700090936 /* UINavigationBar+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extention.swift"; sourceTree = "<group>"; };
+		73EA473025F58B3300090936 /* Date+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extention.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,8 @@
 				7323F58625E93825004E8406 /* UIViewController+Extension.swift */,
 				7323F58725E93825004E8406 /* String+Extension.swift */,
 				73B2262025F5623600D48FA1 /* UIImage+Extention.swift */,
+				73EA472B25F5815700090936 /* UINavigationBar+Extention.swift */,
+				73EA473025F58B3300090936 /* Date+Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				73694A7225EC4A310083CD74 /* AuthenticationManager.swift */,
+				73EA472625F5728A00090936 /* DateManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -467,8 +476,11 @@
 				7323F59125E93825004E8406 /* StoryboardRouter.swift in Sources */,
 				7323F5AB25E94417004E8406 /* PostRequest.swift in Sources */,
 				731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */,
+				73EA472725F5728A00090936 /* DateManager.swift in Sources */,
+				73EA473125F58B3300090936 /* Date+Extention.swift in Sources */,
 				7310756E25F4575500390D5D /* EventsDetails.swift in Sources */,
 				7323F5A325E943F7004E8406 /* GetRequest.swift in Sources */,
+				73EA472C25F5815700090936 /* UINavigationBar+Extention.swift in Sources */,
 				73C5669925E80AD700A27376 /* AuthenticationViewController.swift in Sources */,
 				73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */,
 				732C2A3425F525B500C77DB4 /* EventsTableViewCell.swift in Sources */,

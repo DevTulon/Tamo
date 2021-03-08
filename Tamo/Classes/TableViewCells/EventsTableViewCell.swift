@@ -17,6 +17,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var hasAttachment: UIImageView!
     @IBOutlet weak var hasVideo: UIImageView!
     @IBOutlet weak var ratingsLabel: UILabel!
+    @IBOutlet weak var arrowImageView: UIImageView!
     
     @IBOutlet weak var hasLabelViewWidthConstraint: NSLayoutConstraint! //65
     @IBOutlet weak var hasLabelWidthConstraint: NSLayoutConstraint! //35
@@ -102,10 +103,16 @@ class EventsTableViewCell: UITableViewCell {
         handleBottomViewElements(events: events)
         startTime.text = events.eventStartTime
         endTime.text = events.eventEndTime
+        if events.isCurrentEvent == true {
+            CommonService.shared.cornerRadius(object: containerView, cornerRadius: 10, borderWidth: 2.0, borderColor: .defaultAppsColor)
+            arrowImageView.isHidden = false
+        } else {
+            CommonService.shared.cornerRadius(object: containerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
+            arrowImageView.isHidden = true
+        }
     }
     
     func interfaceUpdate() {
-        CommonService.shared.cornerRadius(object: containerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         CommonService.shared.cornerRadius(object: hasLabel, cornerRadius: 10, borderWidth: 0.0, borderColor: .clear)
         CommonService.shared.cornerRadius(object: sixtyMinSeparatorContainerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         dropShadow(viewShadow: self.shadowView)
