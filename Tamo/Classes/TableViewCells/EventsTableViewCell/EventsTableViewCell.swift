@@ -32,13 +32,6 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     
-    @IBOutlet weak var sixtyMinSeparatorContainerView: UIView!
-    @IBOutlet weak var lastEventsEndTimeLabel: UILabel!
-    @IBOutlet weak var nextEventsStartTimeLabel: UILabel!
-    
-    @IBOutlet weak var shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint: NSLayoutConstraint! //15
-    @IBOutlet weak var sixtyMinSeparatorContainerViewHeightConstraint: NSLayoutConstraint! //40
-    
     func handleBottomViewElements(events: Events) {
         if events.hasLabel == true {
             hasLabelViewWidthConstraint.constant = 65
@@ -80,22 +73,6 @@ class EventsTableViewCell: UITableViewCell {
         layoutIfNeeded()
     }
     
-    func handleSixtyMinSeparatorView(shouldSixtyMinSeparatorContainerViewHidden: Bool, lastEventsEndTime: String, nextEventsStartTime: String) {
-        if shouldSixtyMinSeparatorContainerViewHidden == true {
-            shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint.constant = 0
-            sixtyMinSeparatorContainerViewHeightConstraint.constant = 0
-            lastEventsEndTimeLabel.text = lastEventsEndTime
-            nextEventsStartTimeLabel.text = nextEventsStartTime
-        } else {
-            shouldSixtyMinSeparatorContainerViewHiddenBottomConstraint.constant = 15
-            sixtyMinSeparatorContainerViewHeightConstraint.constant = 40
-            lastEventsEndTimeLabel.text = lastEventsEndTime
-            nextEventsStartTimeLabel.text = nextEventsStartTime
-        }
-        
-        layoutIfNeeded()
-    }
-    
     func setUpCell(events: Events) {
         eventTypeLabel.text = events.eventType
         eventSubjectLabel.text = events.eventSubject
@@ -114,7 +91,6 @@ class EventsTableViewCell: UITableViewCell {
     
     func interfaceUpdate() {
         CommonService.shared.cornerRadius(object: hasLabel, cornerRadius: 10, borderWidth: 0.0, borderColor: .clear)
-        CommonService.shared.cornerRadius(object: sixtyMinSeparatorContainerView, cornerRadius: 10, borderWidth: 1.0, borderColor: .clear)
         dropShadow(viewShadow: self.shadowView)
         layoutIfNeeded()
     }

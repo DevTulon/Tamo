@@ -13,7 +13,6 @@
 		7323F58A25E93825004E8406 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58125E93825004E8406 /* ImageCache.swift */; };
 		7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58225E93825004E8406 /* UIImageView+Extensions.swift */; };
 		7323F58C25E93825004E8406 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58325E93825004E8406 /* UIButton+Extensions.swift */; };
-		7323F58D25E93825004E8406 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58425E93825004E8406 /* Date+Extension.swift */; };
 		7323F58E25E93825004E8406 /* Color+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58525E93825004E8406 /* Color+Extenstion.swift */; };
 		7323F58F25E93825004E8406 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58625E93825004E8406 /* UIViewController+Extension.swift */; };
 		7323F59025E93825004E8406 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58725E93825004E8406 /* String+Extension.swift */; };
@@ -43,6 +42,8 @@
 		73EA472725F5728A00090936 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA472625F5728A00090936 /* DateManager.swift */; };
 		73EA472C25F5815700090936 /* UINavigationBar+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA472B25F5815700090936 /* UINavigationBar+Extention.swift */; };
 		73EA473125F58B3300090936 /* Date+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EA473025F58B3300090936 /* Date+Extention.swift */; };
+		73EF2AE925F6E508004E1E6D /* EventsWithSeparatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EF2AE725F6E508004E1E6D /* EventsWithSeparatorTableViewCell.swift */; };
+		73EF2AEA25F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EF2AE825F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +70,6 @@
 		7323F58125E93825004E8406 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		7323F58225E93825004E8406 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		7323F58325E93825004E8406 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
-		7323F58425E93825004E8406 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7323F58525E93825004E8406 /* Color+Extenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extenstion.swift"; sourceTree = "<group>"; };
 		7323F58625E93825004E8406 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7323F58725E93825004E8406 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -105,6 +105,8 @@
 		73EA472625F5728A00090936 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		73EA472B25F5815700090936 /* UINavigationBar+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extention.swift"; sourceTree = "<group>"; };
 		73EA473025F58B3300090936 /* Date+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extention.swift"; sourceTree = "<group>"; };
+		73EF2AE725F6E508004E1E6D /* EventsWithSeparatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsWithSeparatorTableViewCell.swift; sourceTree = "<group>"; };
+		73EF2AE825F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsWithSeparatorTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +151,6 @@
 				7323F58125E93825004E8406 /* ImageCache.swift */,
 				7323F58225E93825004E8406 /* UIImageView+Extensions.swift */,
 				7323F58325E93825004E8406 /* UIButton+Extensions.swift */,
-				7323F58425E93825004E8406 /* Date+Extension.swift */,
 				7323F58525E93825004E8406 /* Color+Extenstion.swift */,
 				7323F58625E93825004E8406 /* UIViewController+Extension.swift */,
 				7323F58725E93825004E8406 /* String+Extension.swift */,
@@ -217,8 +218,8 @@
 		732C2A2E25F5249600C77DB4 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				732C2A3225F525B500C77DB4 /* EventsTableViewCell.swift */,
-				732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */,
+				73EF2AF225F6E51F004E1E6D /* EventsTableViewCell */,
+				73EF2AEE25F6E510004E1E6D /* EventsWithSeparatorTableViewCell */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -322,6 +323,24 @@
 				73EA472625F5728A00090936 /* DateManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		73EF2AEE25F6E510004E1E6D /* EventsWithSeparatorTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				73EF2AE725F6E508004E1E6D /* EventsWithSeparatorTableViewCell.swift */,
+				73EF2AE825F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib */,
+			);
+			path = EventsWithSeparatorTableViewCell;
+			sourceTree = "<group>";
+		};
+		73EF2AF225F6E51F004E1E6D /* EventsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				732C2A3225F525B500C77DB4 /* EventsTableViewCell.swift */,
+				732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */,
+			);
+			path = EventsTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +448,7 @@
 			files = (
 				732C2A3525F525B500C77DB4 /* EventsTableViewCell.xib in Resources */,
 				73C5666425E8012F00A27376 /* LaunchScreen.storyboard in Resources */,
+				73EF2AEA25F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib in Resources */,
 				73C5666125E8012F00A27376 /* Assets.xcassets in Resources */,
 				73C5665C25E8012B00A27376 /* Main.storyboard in Resources */,
 			);
@@ -473,6 +493,7 @@
 				73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */,
 				73C566A825E80C6000A27376 /* EventsDetailsViewController.swift in Sources */,
 				73C5665525E8012B00A27376 /* AppDelegate.swift in Sources */,
+				73EF2AE925F6E508004E1E6D /* EventsWithSeparatorTableViewCell.swift in Sources */,
 				7323F59125E93825004E8406 /* StoryboardRouter.swift in Sources */,
 				7323F5AB25E94417004E8406 /* PostRequest.swift in Sources */,
 				731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */,
@@ -484,7 +505,6 @@
 				73C5669925E80AD700A27376 /* AuthenticationViewController.swift in Sources */,
 				73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */,
 				732C2A3425F525B500C77DB4 /* EventsTableViewCell.swift in Sources */,
-				7323F58D25E93825004E8406 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

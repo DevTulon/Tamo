@@ -73,48 +73,48 @@ class DateManager {
         }
     }
     
-    func timeDifferenceBetweenEventsIsMoreThanSixty(events: Events) -> Bool {
-//        var boolValue = false
-//        if UserDefaults.standard.string(forKey: "PreviousEventsEndTime") == nil {
-//            UserDefaults.standard.set(events.eventEndTime, forKey: "PreviousEventsEndTime")
-//        } else {
-//            //compare PreviousEventsEndTime with current start time
-//            //If the time difference is more than 60 min send true otherwise false
-//            //Remove userdefault & set with current end time
-//            if let currentEventsStartTime = events.eventStartTime {
-//                let prevEventsEndTime = UserDefaults.standard.string(forKey: "PreviousEventsEndTime")
-//                let timeDiff = getTimeDifferences(previousEventsEndTime: prevEventsEndTime!, currentEventsStartTime: currentEventsStartTime)
-//
-//                if timeDiff > 60 {
-//                    boolValue = true
-//                } else {
-//                    boolValue = false
-//                }
-//                UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
-//                UserDefaults.standard.set(events.eventEndTime, forKey: "PreviousEventsEndTime")
-//            }
-//        }
-//        return boolValue
-        return false
+    func timeDifferenceBetweenEventsIsMoreThanSixty(previousEventsEndT: String, currentEventsStartT: String) -> (Bool, String, String) {
+        var boolValue = false
+        var prevEventsEndTm = ""
+        var currentEventsStartTm = ""
+        
+        let timeDiff = getTimeDifferences(previousEventsEndTime: previousEventsEndT, currentEventsStartTime: currentEventsStartT)
+
+        if timeDiff > 60 {
+            boolValue = true
+            prevEventsEndTm = previousEventsEndT
+            currentEventsStartTm = currentEventsStartT
+        } else {
+            boolValue = false
+            prevEventsEndTm = ""
+            currentEventsStartTm = ""
+        }
+        
+        return (boolValue, prevEventsEndTm, currentEventsStartTm)
     }
     
     func getTimeDifferences(previousEventsEndTime: String, currentEventsStartTime: String) -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        //dateFormatter.locale = Locale.current
-        //dateFormatter.dateFormat = "kk:mm"
-        dateFormatter.dateFormat = "HH:mm"
+        let now = Date()
         
-        let previousEventsEndTimeFormat = dateFormatter.date(from: previousEventsEndTime)
-        let currentEventsStartTimeFormat = dateFormatter.date(from: currentEventsStartTime)
+        let currentEventsStartHour = Int(currentEventsStartTime.prefix(2))
+        let currentEventsStartMin = Int(currentEventsStartTime.components(separatedBy: ":")[1])
         
-        let calendar = Calendar.current
-        let previousEventsEndTimeComponents = calendar.dateComponents([.hour, .minute], from: previousEventsEndTimeFormat!)
-        let currentEventsStartTimeComponents = calendar.dateComponents([.hour, .minute], from: currentEventsStartTimeFormat!)
-
-        let difference = calendar.dateComponents([.minute], from: previousEventsEndTimeComponents, to: currentEventsStartTimeComponents).minute!
-        return difference
+        let previousEventsEndHour = Int(previousEventsEndTime.prefix(2))
+        let previousEventsEndMin = Int(previousEventsEndTime.components(separatedBy: ":")[1])
+        
+        let currentEventsStart = now.dateAt(hours: currentEventsStartHour!, minutes: currentEventsStartMin!)
+        let previousEventsEnd = now.dateAt(hours: previousEventsEndHour!, minutes: previousEventsEndMin!)
+        
+        return getMinutesDifferenceFromTwoDates(bigTime: previousEventsEnd, smallTime: currentEventsStart)
+    }
+    
+    func getMinutesDifferenceFromTwoDates(bigTime: Date, smallTime: Date) -> Int {
+        let diff = Int(bigTime.timeIntervalSince1970 - smallTime.timeIntervalSince1970)
+        let hours = diff / 3600
+        let minutes = (diff - hours * 3600) / 60
+        let totalMin = (hours * 60) + minutes
+        print("minutesminutes\(abs(totalMin))")
+        return abs(totalMin)
     }
     
     func getCurrentEvent(startEventTime: String, endEventTime: String) -> Bool {
@@ -138,3 +138,22 @@ class DateManager {
         return isInBetween!
     }
 }
+
+
+
+
+
+//func getTimeDifferences(previousEventsEndTime: String, currentEventsStartTime: String) -> Int {
+//    let now = Date()
+//
+//    let currentEventsStartHour = Int(currentEventsStartTime.prefix(2))
+//    let currentEventsStartMin = Int(currentEventsStartTime.components(separatedBy: ":")[1])
+//
+//    let previousEventsEndHour = Int(previousEventsEndTime.prefix(2))
+//    let previousEventsEndMin = Int(previousEventsEndTime.components(separatedBy: ":")[1])
+//
+//    let currentEventsStart = now.dateAt(hours: currentEventsStartHour!, minutes: currentEventsStartMin!)
+//    let previousEventsEnd = now.dateAt(hours: previousEventsEndHour!, minutes: previousEventsEndMin!)
+//
+//    return getMinutesDifferenceFromTwoDates(bigTime: previousEventsEnd, smallTime: currentEventsStart)
+//}

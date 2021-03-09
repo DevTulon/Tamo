@@ -38,7 +38,26 @@ class EventsViewController: UIViewController {
                     let randomNum = Int(arc4random_uniform(49) + 10)
                     let startTime = DateManager.shared.getStartTime(events: events)
                     let endTime = DateManager.shared.getEndTime(startTm: startTime, randomNum: randomNum)
-                    let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: startTime, eventEndTime: endTime, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: false)
+                    
+                    var hasSixtyMinSeparator = false
+                    var prevEventsEndTm = ""
+                    var currentEventsStartTm = ""
+                    
+                    if UserDefaults.standard.string(forKey: "PreviousEventsEndTime") == nil {
+                        UserDefaults.standard.set(endTime, forKey: "PreviousEventsEndTime")
+                    } else {
+                        let prevEventsEndTime = UserDefaults.standard.string(forKey: "PreviousEventsEndTime")
+                        let result = DateManager.shared.timeDifferenceBetweenEventsIsMoreThanSixty(previousEventsEndT: prevEventsEndTime!, currentEventsStartT: startTime)
+                        
+                        hasSixtyMinSeparator = result.0
+                        prevEventsEndTm = result.1
+                        currentEventsStartTm = result.2
+                        
+                        UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
+                        UserDefaults.standard.set(endTime, forKey: "PreviousEventsEndTime")
+                    }
+                    
+                    let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: startTime, eventEndTime: endTime, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: false, hasSixtyMinSeparator: hasSixtyMinSeparator, prevEventsEndTm: prevEventsEndTm, currentEventsStartTm: currentEventsStartTm)
                     self.eventsArray.append(evnt)
                 }
                 DispatchQueue.main.async {
@@ -59,9 +78,9 @@ class EventsViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.imageView?.contentMode = .scaleAspectFit
-        print("(user?.avatar)! \((user?.avatar)!)")
-//        let imageData = try? Data(contentsOf: URL(string : "https://www.w3schools.com/howto/img_avatar.png")!)
-        let imageData = try? Data(contentsOf: URL(string : (user?.avatar)!)!)
+        //print("(user?.avatar)! \((user?.avatar)!)")
+        let imageData = try? Data(contentsOf: URL(string : "https://www.w3schools.com/howto/img_avatar.png")!)
+        //let imageData = try? Data(contentsOf: URL(string : (user?.avatar)!)!)
 
         if let imageData = imageData, let image =  UIImage(data: imageData)?.resizeImage(to: button.frame.size) {
             button.setBackgroundImage(image, for: .normal)
@@ -131,10 +150,12 @@ class EventsViewController: UIViewController {
     func registerNib() {
         let eventsTableViewCell = UINib(nibName: "EventsTableViewCell", bundle: nil)
         eventsTableView.register(eventsTableViewCell, forCellReuseIdentifier: "EventsTableViewCell")
+        let eventsWithSeparatorTableViewCell = UINib(nibName: "EventsWithSeparatorTableViewCell", bundle: nil)
+        eventsTableView.register(eventsWithSeparatorTableViewCell, forCellReuseIdentifier: "EventsWithSeparatorTableViewCell")
     }
     
     func checkCurrentEvent() {
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { (timer) in
             //check current event
             DispatchQueue.main.async {
                 if self.eventsArray.count > 0 {
@@ -147,12 +168,13 @@ class EventsViewController: UIViewController {
                         if isCurrentEvent == true {
                             isCurrentEventFound = true
                         }
-                        let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: events.eventStartTime!, eventEndTime: events.eventEndTime!, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: isCurrentEvent)
+                        let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: events.eventStartTime!, eventEndTime: events.eventEndTime!, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: isCurrentEvent, hasSixtyMinSeparator: events.hasSixtyMinSeparator!, prevEventsEndTm: events.prevEventsEndTm!, currentEventsStartTm: events.currentEventsStartTm!)
                         self.eventsArray.append(evnt)
                     }
-                    if isCurrentEventFound == true {
-                        self.eventsTableView.reloadData()
-                    }
+//                    if isCurrentEventFound == true {
+//                        self.eventsTableView.reloadData()
+//                    }
+                    self.eventsTableView.reloadData()
                 }
             }
         }
@@ -170,26 +192,27 @@ extension EventsViewController : UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat?
-        if DateManager.shared.timeDifferenceBetweenEventsIsMoreThanSixty(events: eventsArray[indexPath.row]) == true {
+        if eventsArray[indexPath.row].hasSixtyMinSeparator == true {
             height = 185
         } else {
             height = 130
         }
+
         return height!
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventsTableViewCell") as! EventsTableViewCell
-        
-        if DateManager.shared.timeDifferenceBetweenEventsIsMoreThanSixty(events: eventsArray[indexPath.row]) == true {
-            cell.handleSixtyMinSeparatorView(shouldSixtyMinSeparatorContainerViewHidden: false, lastEventsEndTime: "", nextEventsStartTime: "")
+        if eventsArray[indexPath.row].hasSixtyMinSeparator == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EventsWithSeparatorTableViewCell") as! EventsWithSeparatorTableViewCell
+            cell.selectionStyle = .none
+            cell.setUpCell(events: eventsArray[indexPath.row])
+            return cell
         } else {
-            cell.handleSixtyMinSeparatorView(shouldSixtyMinSeparatorContainerViewHidden: true, lastEventsEndTime: "", nextEventsStartTime: "")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EventsTableViewCell") as! EventsTableViewCell
+            cell.selectionStyle = .none
+            cell.setUpCell(events: eventsArray[indexPath.row])
+            return cell
         }
-        
-        cell.selectionStyle = .none
-        cell.setUpCell(events: eventsArray[indexPath.row])
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

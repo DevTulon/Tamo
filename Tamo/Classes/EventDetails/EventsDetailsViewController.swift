@@ -85,7 +85,6 @@ extension EventsDetailsViewController : UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EventsTableViewCell") as! EventsTableViewCell
-            cell.handleSixtyMinSeparatorView(shouldSixtyMinSeparatorContainerViewHidden: true, lastEventsEndTime: "", nextEventsStartTime: "")
             cell.selectionStyle = .none
             cell.setUpCell(events: events!)
             return cell
