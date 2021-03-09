@@ -12,10 +12,14 @@ class EventsViewController: UIViewController {
     var user: Users?
     var usersArray = [UserCD]()
     var eventsArray = [Events]()
+    var topScrollerDateArray = [TopScrollerDate]()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
     var timer: Timer?
+    @IBOutlet weak var floatingIndicatorWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var topCollectionView: UICollectionView!
     
     func createNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(notificationActionToEvent(notification:)), name: notificationObserverToGetEvent, object: nil)
@@ -120,10 +124,29 @@ class EventsViewController: UIViewController {
         }
     }
     
+    func loadTopCollectionView() {
+        let allDates = Date().getThirtyDaysFromToday()
+        topScrollerDateArray.removeAll()
+        
+        for (index, singleDate) in allDates.enumerated() {
+            let dayName = singleDate.convertDateToDayName()
+            let dayNumberValue = Date().convertDateToDayNumber(date: singleDate)
+            var isToday = false
+            if index == 0 {
+                isToday = true
+            }
+            let topScrollerDate = TopScrollerDate(dateValue: dayNumberValue, dayName: dayName!.uppercased(), isToday: isToday)
+            topScrollerDateArray.append(topScrollerDate)
+        }
+        self.topCollectionView.reloadData()
+        floatingIndicatorWidthConstraint.constant = UIScreen.main.bounds.width/8
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
         checkCurrentEvent()
+        loadTopCollectionView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -152,6 +175,8 @@ class EventsViewController: UIViewController {
         eventsTableView.register(eventsTableViewCell, forCellReuseIdentifier: "EventsTableViewCell")
         let eventsWithSeparatorTableViewCell = UINib(nibName: "EventsWithSeparatorTableViewCell", bundle: nil)
         eventsTableView.register(eventsWithSeparatorTableViewCell, forCellReuseIdentifier: "EventsWithSeparatorTableViewCell")
+        let topCollectionViewCell = UINib(nibName: "TopCollectionViewCell", bundle: nil)
+        topCollectionView.register(topCollectionViewCell, forCellWithReuseIdentifier: "TopCollectionViewCell")
     }
     
     func checkCurrentEvent() {
@@ -219,5 +244,65 @@ extension EventsViewController : UITableViewDataSource, UITableViewDelegate {
         let eventsDetailsViewController = Storyboards.EventsDetailsVC.controller as! EventsDetailsViewController
         eventsDetailsViewController.events = eventsArray[indexPath.row]
         pushViewController(T: eventsDetailsViewController)
+    }
+}
+
+extension EventsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return topScrollerDateArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        var edgeInsetsTop, edgeInsetsBottom, edgeInsetsLeft, edgeInsetsRight: CGFloat?
+        edgeInsetsTop = 0
+        edgeInsetsBottom = 0
+        edgeInsetsLeft = 0
+        edgeInsetsRight = 0
+        return UIEdgeInsets(top: edgeInsetsTop!, left: edgeInsetsLeft!, bottom: edgeInsetsBottom!, right: edgeInsetsRight!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var width: CGFloat?
+        var height: CGFloat?
+        width = UIScreen.main.bounds.width/8
+        height = topCollectionView.bounds.height
+        return CGSize(width: width!, height: height!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionViewCell", for: indexPath) as! TopCollectionViewCell
+        cell.setUpCell(topScrollerDate: topScrollerDateArray[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.topCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if self.topCollectionView == scrollView {
+            targetContentOffset.pointee = scrollView.contentOffset
+            var indexes = self.topCollectionView.indexPathsForVisibleItems
+            indexes.sort()
+            var index = indexes.first!
+            let cell = self.topCollectionView.cellForItem(at: index)!
+            let position = self.topCollectionView.contentOffset.x - cell.frame.origin.x
+            if position > cell.frame.size.width/2{
+               index.row = index.row+1
+            }
+            self.topCollectionView.scrollToItem(at: index, at: .left, animated: true)
+        }
     }
 }

@@ -131,9 +131,39 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vB5-zy-sDp">
                                 <rect key="frame" x="0.0" y="88" width="428" height="60"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="81K-QF-v5g">
+                                        <rect key="frame" x="15" y="0.0" width="413" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M9a-hd-8AL">
+                                            <size key="itemSize" width="60" height="60"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Nsl-hM-vG2" id="fuu-iL-Wbf"/>
+                                            <outlet property="delegate" destination="Nsl-hM-vG2" id="Spo-rX-VDC"/>
+                                        </connections>
+                                    </collectionView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selector" translatesAutoresizingMaskIntoConstraints="NO" id="AM7-My-3vg">
+                                        <rect key="frame" x="15" y="48" width="50" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="8dA-jU-FSz"/>
+                                            <constraint firstAttribute="height" constant="15" id="jpR-g6-1Rs"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.50980392156862742" green="0.6705882352941176" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="AM7-My-3vg" firstAttribute="leading" secondItem="vB5-zy-sDp" secondAttribute="leading" constant="15" id="ByD-Yw-HIf"/>
                                     <constraint firstAttribute="height" constant="60" id="I60-Uh-WQr"/>
+                                    <constraint firstItem="81K-QF-v5g" firstAttribute="leading" secondItem="vB5-zy-sDp" secondAttribute="leading" constant="15" id="Yzz-wD-7pa"/>
+                                    <constraint firstItem="AM7-My-3vg" firstAttribute="bottom" secondItem="81K-QF-v5g" secondAttribute="bottom" constant="3" id="apV-ti-sKy"/>
+                                    <constraint firstItem="81K-QF-v5g" firstAttribute="top" secondItem="vB5-zy-sDp" secondAttribute="top" id="fX2-fc-pKW"/>
+                                    <constraint firstAttribute="trailing" secondItem="81K-QF-v5g" secondAttribute="trailing" id="kHn-4H-jBU"/>
+                                    <constraint firstAttribute="bottom" secondItem="81K-QF-v5g" secondAttribute="bottom" id="sy8-W9-Ohd"/>
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsr-C1-Nzt">
@@ -156,7 +186,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ukn-TW-dA5"/>
-                        <color key="backgroundColor" red="0.93359375" green="0.93359375" blue="0.93359375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="vB5-zy-sDp" firstAttribute="top" secondItem="ukn-TW-dA5" secondAttribute="top" id="EVH-c6-FeM"/>
                             <constraint firstItem="Nsr-C1-Nzt" firstAttribute="centerY" secondItem="ukn-TW-dA5" secondAttribute="centerY" id="PUz-cB-v7F"/>
@@ -177,7 +207,9 @@
                     <connections>
                         <outlet property="activityIndicator" destination="zzK-XF-aNh" id="bJr-zp-jEg"/>
                         <outlet property="eventsTableView" destination="wlg-oF-dZ6" id="T4V-5Y-49N"/>
+                        <outlet property="floatingIndicatorWidthConstraint" destination="8dA-jU-FSz" id="7Zb-Hn-OIs"/>
                         <outlet property="noDataLabel" destination="Nsr-C1-Nzt" id="DvD-Tt-z0L"/>
+                        <outlet property="topCollectionView" destination="81K-QF-v5g" id="j3A-Kh-pEJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BIF-vp-TBT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -304,6 +336,7 @@
     <resources>
         <image name="comment" width="40" height="40"/>
         <image name="logo" width="250" height="250"/>
+        <image name="selector" width="100" height="18.333333969116211"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

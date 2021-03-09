@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7310756E25F4575500390D5D /* EventsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7310756D25F4575500390D5D /* EventsDetails.swift */; };
 		7310757325F45E0300390D5D /* EventsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7310757225F45E0300390D5D /* EventsDetailsTableViewCell.swift */; };
+		731C120025F7026200FE7B12 /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C11FE25F7026200FE7B12 /* TopCollectionViewCell.swift */; };
+		731C120125F7026200FE7B12 /* TopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731C11FF25F7026200FE7B12 /* TopCollectionViewCell.xib */; };
+		731C120625F70A5E00FE7B12 /* TopScrollerDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C120525F70A5E00FE7B12 /* TopScrollerDate.swift */; };
 		731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731E9A7225EEBCFA002C4CA6 /* CommonService.swift */; };
 		7323F58A25E93825004E8406 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58125E93825004E8406 /* ImageCache.swift */; };
 		7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7323F58225E93825004E8406 /* UIImageView+Extensions.swift */; };
@@ -66,6 +69,9 @@
 /* Begin PBXFileReference section */
 		7310756D25F4575500390D5D /* EventsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetails.swift; sourceTree = "<group>"; };
 		7310757225F45E0300390D5D /* EventsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		731C11FE25F7026200FE7B12 /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
+		731C11FF25F7026200FE7B12 /* TopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopCollectionViewCell.xib; sourceTree = "<group>"; };
+		731C120525F70A5E00FE7B12 /* TopScrollerDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopScrollerDate.swift; sourceTree = "<group>"; };
 		731E9A7225EEBCFA002C4CA6 /* CommonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonService.swift; sourceTree = "<group>"; };
 		7323F58125E93825004E8406 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		7323F58225E93825004E8406 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -134,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		731C11FD25F7023400FE7B12 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				731C11FE25F7026200FE7B12 /* TopCollectionViewCell.swift */,
+				731C11FF25F7026200FE7B12 /* TopCollectionViewCell.xib */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		7323F55625E9372E004E8406 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +190,7 @@
 				7323F59925E9425C004E8406 /* Users.swift */,
 				73DEF9BF25EEABE300778976 /* Events.swift */,
 				7310756D25F4575500390D5D /* EventsDetails.swift */,
+				731C120525F70A5E00FE7B12 /* TopScrollerDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +299,7 @@
 		73C5669025E80A2F00A27376 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				731C11FD25F7023400FE7B12 /* CollectionViewCells */,
 				732C2A2E25F5249600C77DB4 /* TableViewCells */,
 				73C5669125E80A3600A27376 /* Authentication */,
 				73C5669D25E80BE800A27376 /* Events */,
@@ -446,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				731C120125F7026200FE7B12 /* TopCollectionViewCell.xib in Resources */,
 				732C2A3525F525B500C77DB4 /* EventsTableViewCell.xib in Resources */,
 				73C5666425E8012F00A27376 /* LaunchScreen.storyboard in Resources */,
 				73EF2AEA25F6E508004E1E6D /* EventsWithSeparatorTableViewCell.xib in Resources */,
@@ -482,12 +500,14 @@
 				7310757325F45E0300390D5D /* EventsDetailsTableViewCell.swift in Sources */,
 				73694A7325EC4A310083CD74 /* AuthenticationManager.swift in Sources */,
 				7323F5B125E95AE5004E8406 /* NotificationCenter.swift in Sources */,
+				731C120625F70A5E00FE7B12 /* TopScrollerDate.swift in Sources */,
 				732B89A325ED5DBA009455D4 /* UserCD+CoreDataClass.swift in Sources */,
 				732B89AC25ED5DFA009455D4 /* CoreDataService.swift in Sources */,
 				7323F58E25E93825004E8406 /* Color+Extenstion.swift in Sources */,
 				7323F59025E93825004E8406 /* String+Extension.swift in Sources */,
 				7323F58B25E93825004E8406 /* UIImageView+Extensions.swift in Sources */,
 				73B2262125F5623600D48FA1 /* UIImage+Extention.swift in Sources */,
+				731C120025F7026200FE7B12 /* TopCollectionViewCell.swift in Sources */,
 				7323F59A25E9425C004E8406 /* Users.swift in Sources */,
 				73DEF9C025EEABE300778976 /* Events.swift in Sources */,
 				73C566A025E80C4F00A27376 /* EventsViewController.swift in Sources */,

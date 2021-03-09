@@ -113,7 +113,7 @@ class DateManager {
         let hours = diff / 3600
         let minutes = (diff - hours * 3600) / 60
         let totalMin = (hours * 60) + minutes
-        print("minutesminutes\(abs(totalMin))")
+        //print("minutesminutes\(abs(totalMin))")
         return abs(totalMin)
     }
     
@@ -138,22 +138,3 @@ class DateManager {
         return isInBetween!
     }
 }
-
-
-
-
-
-//func getTimeDifferences(previousEventsEndTime: String, currentEventsStartTime: String) -> Int {
-//    let now = Date()
-//
-//    let currentEventsStartHour = Int(currentEventsStartTime.prefix(2))
-//    let currentEventsStartMin = Int(currentEventsStartTime.components(separatedBy: ":")[1])
-//
-//    let previousEventsEndHour = Int(previousEventsEndTime.prefix(2))
-//    let previousEventsEndMin = Int(previousEventsEndTime.components(separatedBy: ":")[1])
-//
-//    let currentEventsStart = now.dateAt(hours: currentEventsStartHour!, minutes: currentEventsStartMin!)
-//    let previousEventsEnd = now.dateAt(hours: previousEventsEndHour!, minutes: previousEventsEndMin!)
-//
-//    return getMinutesDifferenceFromTwoDates(bigTime: previousEventsEnd, smallTime: currentEventsStart)
-//}
