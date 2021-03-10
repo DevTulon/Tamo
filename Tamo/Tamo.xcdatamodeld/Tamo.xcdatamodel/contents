@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H524" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="EventsCD" representedClassName="EventsCD" syncable="YES">
+        <attribute name="currentEventsStartTm" optional="YES" attributeType="String"/>
+        <attribute name="eventAddress" optional="YES" attributeType="String"/>
+        <attribute name="eventDate" optional="YES" attributeType="String"/>
+        <attribute name="eventEndTime" optional="YES" attributeType="String"/>
+        <attribute name="eventStartTime" optional="YES" attributeType="String"/>
+        <attribute name="eventSubject" optional="YES" attributeType="String"/>
+        <attribute name="eventType" optional="YES" attributeType="String"/>
+        <attribute name="hasAttachment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasLabel" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasSixtyMinSeparator" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasVideo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="important" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isCurrentEvent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="prevEventsEndTm" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="UserCD" representedClassName="UserCD" syncable="YES">
         <attribute name="authToken" optional="YES" attributeType="String"/>
         <attribute name="avatar" optional="YES" attributeType="String"/>
@@ -11,5 +30,6 @@
     </entity>
     <elements>
         <element name="UserCD" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="EventsCD" positionX="-63" positionY="36" width="128" height="298"/>
     </elements>
 </model>

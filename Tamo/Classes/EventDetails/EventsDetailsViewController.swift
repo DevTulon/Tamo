@@ -9,7 +9,7 @@ import UIKit
 
 class EventsDetailsViewController: UIViewController {
 
-    var events: Events?
+    var events: EventsCD?
     var eventsDetailsArray = [EventsDetails]()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsDetailsTableView: UITableView!

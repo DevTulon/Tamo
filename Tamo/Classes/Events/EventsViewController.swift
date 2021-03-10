@@ -11,7 +11,7 @@ class EventsViewController: UIViewController {
 
     var user: Users?
     var usersArray = [UserCD]()
-    var eventsArray = [Events]()
+    var eventsArray = [EventsCD]()
     var topScrollerDateArray = [TopScrollerDate]()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsTableView: UITableView!
@@ -30,6 +30,8 @@ class EventsViewController: UIViewController {
         if (error == nil) {
             if notification.userInfo != nil {
                 let eventsList = notification.userInfo!["response"] as! [Events]
+                self.eventsArray.removeAll()
+                CoreDataService.shared.resetCoreDataEntityEvents()
                 DispatchQueue.main.async {
                     if eventsList.count == 0 {
                         self.noDataLabel.isHidden = false
@@ -37,7 +39,7 @@ class EventsViewController: UIViewController {
                         self.noDataLabel.isHidden = true
                     }
                 }
-                self.eventsArray.removeAll()
+                UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
                 for events in eventsList {
                     let randomNum = Int(arc4random_uniform(49) + 10)
                     let startTime = DateManager.shared.getStartTime(events: events)
@@ -62,15 +64,38 @@ class EventsViewController: UIViewController {
                     }
                     
                     let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: startTime, eventEndTime: endTime, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: false, hasSixtyMinSeparator: hasSixtyMinSeparator, prevEventsEndTm: prevEventsEndTm, currentEventsStartTm: currentEventsStartTm)
-                    self.eventsArray.append(evnt)
+                    self.saveEventsIntoCoreData(events: evnt)
                 }
                 DispatchQueue.main.async {
-                    self.eventsTableView.reloadData()
+                    self.fetchEventsFromCoreData()
                 }
             }
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
             }
+        }
+    }
+    
+    func saveEventsIntoCoreData(events: Events) {
+        let dic = ["id": events.id!,
+                   "userId": events.userId!,
+                    "eventDate": events.eventDate!,
+                    "eventStartTime": events.eventStartTime!,
+                    "eventEndTime": events.eventEndTime!,
+                    "eventType": events.eventType!,
+                    "eventSubject": events.eventSubject!,
+                    "eventAddress": events.eventAddress!,
+                    "hasAttachment": events.hasAttachment!,
+                    "hasLabel": events.hasLabel!,
+                    "hasVideo": events.hasVideo!,
+                    "rating": events.rating!,
+                    "important": events.important!,
+                    "isCurrentEvent": events.isCurrentEvent!,
+                    "hasSixtyMinSeparator": events.hasSixtyMinSeparator!,
+                    "prevEventsEndTm": events.prevEventsEndTm!,
+                    "currentEventsStartTm": events.currentEventsStartTm!] as [String : Any]
+        DispatchQueue.main.async {
+            CoreDataService.shared.saveEvent(object: dic)
         }
     }
     
@@ -107,12 +132,20 @@ class EventsViewController: UIViewController {
         usersArray = CoreDataService.shared.getUser()
         DispatchQueue.global(qos: .userInteractive).async {
             for currentUser in self.usersArray {
-                self.prepareTableData(currentUser: currentUser)
+                self.prepareTableDataForUser(currentUser: currentUser)
             }
         }
     }
     
-    func prepareTableData(currentUser: UserCD) {
+    func fetchEventsFromCoreData() {
+        DispatchQueue.main.async {
+            self.eventsArray = CoreDataService.shared.getEvents()
+            self.eventsTableView.reloadData()
+            self.checkCurrentEvent()
+        }
+    }
+    
+    func prepareTableDataForUser(currentUser: UserCD) {
         if let cuserId = currentUser.userId,
             let cauthToken = currentUser.authToken,
             let cemail = currentUser.email,
@@ -145,13 +178,11 @@ class EventsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
-        checkCurrentEvent()
         loadTopCollectionView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
         self.navigationController?.navigationBar.shouldRemoveShadow(false)
         
         if timer != nil {
@@ -180,27 +211,36 @@ class EventsViewController: UIViewController {
     }
     
     func checkCurrentEvent() {
-        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { (timer) in
             //check current event
             DispatchQueue.main.async {
-                if self.eventsArray.count > 0 {
-                    let eventsArrayList = self.eventsArray
-                    self.eventsArray.removeAll()
-                    
-                    var isCurrentEventFound = false
-                    for events in eventsArrayList {
-                        let isCurrentEvent = DateManager.shared.getCurrentEvent(startEventTime: events.eventStartTime!, endEventTime: events.eventEndTime!)
-                        if isCurrentEvent == true {
-                            isCurrentEventFound = true
-                        }
-                        let evnt = Events(id: events.id!, userId: events.userId!, eventDate: events.eventDate!, eventStartTime: events.eventStartTime!, eventEndTime: events.eventEndTime!, eventType: events.eventType!, eventSubject: events.eventSubject!, eventAddress: events.eventAddress!, hasAttachment: events.hasAttachment!, hasLabel: events.hasLabel!, hasVideo: events.hasVideo!, rating: events.rating!, important: events.important!, isCurrentEvent: isCurrentEvent, hasSixtyMinSeparator: events.hasSixtyMinSeparator!, prevEventsEndTm: events.prevEventsEndTm!, currentEventsStartTm: events.currentEventsStartTm!)
-                        self.eventsArray.append(evnt)
-                    }
-//                    if isCurrentEventFound == true {
-//                        self.eventsTableView.reloadData()
-//                    }
-                    self.eventsTableView.reloadData()
+                self.eventsArray.removeAll()
+                self.eventsArray = CoreDataService.shared.getEvents()
+                CoreDataService.shared.resetCoreDataEntityEvents()
+                for events in self.eventsArray {
+                    let isCurrentEvent = DateManager.shared.getCurrentEvent(startEventTime: events.eventStartTime!, endEventTime: events.eventEndTime!)
+                    let dic = ["id": events.id!,
+                               "userId": events.userId!,
+                                "eventDate": events.eventDate!,
+                                "eventStartTime": events.eventStartTime!,
+                                "eventEndTime": events.eventEndTime!,
+                                "eventType": events.eventType!,
+                                "eventSubject": events.eventSubject!,
+                                "eventAddress": events.eventAddress!,
+                                "hasAttachment": events.hasAttachment,
+                                "hasLabel": events.hasLabel,
+                                "hasVideo": events.hasVideo,
+                                "rating": events.rating!,
+                                "important": events.important,
+                                "isCurrentEvent": isCurrentEvent,
+                                "hasSixtyMinSeparator": events.hasSixtyMinSeparator,
+                                "prevEventsEndTm": events.prevEventsEndTm!,
+                                "currentEventsStartTm": events.currentEventsStartTm!] as [String : Any]
+                    CoreDataService.shared.saveEvent(object: dic)
                 }
+                self.eventsArray.removeAll()
+                self.eventsArray = CoreDataService.shared.getEvents()
+                self.eventsTableView.reloadData()
             }
         }
     }

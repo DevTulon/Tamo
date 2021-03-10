@@ -35,7 +35,7 @@ class EventsWithSeparatorTableViewCell: UITableViewCell {
     @IBOutlet weak var lastEventsEndTimeLabel: UILabel!
     @IBOutlet weak var nextEventsStartTimeLabel: UILabel!
     
-    func handleBottomViewElements(events: Events) {
+    func handleBottomViewElements(events: EventsCD) {
         if events.hasLabel == true {
             hasLabelViewWidthConstraint.constant = 65
             hasLabelWidthConstraint.constant = 35
@@ -76,7 +76,7 @@ class EventsWithSeparatorTableViewCell: UITableViewCell {
         layoutIfNeeded()
     }
     
-    func setUpCell(events: Events) {
+    func setUpCell(events: EventsCD) {
         eventTypeLabel.text = events.eventType
         eventSubjectLabel.text = events.eventSubject
         eventAddressLabel.text = events.eventAddress

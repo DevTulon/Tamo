@@ -31,6 +31,8 @@
 		732C2A3525F525B500C77DB4 /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */; };
 		73694A7325EC4A310083CD74 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73694A7225EC4A310083CD74 /* AuthenticationManager.swift */; };
 		73B2262125F5623600D48FA1 /* UIImage+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2262025F5623600D48FA1 /* UIImage+Extention.swift */; };
+		73B2E4EE25F78946007D5FB9 /* EventsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2E4EC25F78946007D5FB9 /* EventsCD+CoreDataClass.swift */; };
+		73B2E4EF25F78946007D5FB9 /* EventsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B2E4ED25F78946007D5FB9 /* EventsCD+CoreDataProperties.swift */; };
 		73C5665525E8012B00A27376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665425E8012B00A27376 /* AppDelegate.swift */; };
 		73C5665C25E8012B00A27376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5665A25E8012B00A27376 /* Main.storyboard */; };
 		73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73C5665D25E8012B00A27376 /* Tamo.xcdatamodeld */; };
@@ -91,6 +93,8 @@
 		732C2A3325F525B500C77DB4 /* EventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		73694A7225EC4A310083CD74 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		73B2262025F5623600D48FA1 /* UIImage+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extention.swift"; sourceTree = "<group>"; };
+		73B2E4EC25F78946007D5FB9 /* EventsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73B2E4ED25F78946007D5FB9 /* EventsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		73C5665125E8012B00A27376 /* Tamo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tamo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5665425E8012B00A27376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C5665B25E8012B00A27376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 		732B899F25ED5D84009455D4 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				73B2E4EB25F7891D007D5FB9 /* EventsCD */,
 				732B89A025ED5D93009455D4 /* UserCD */,
 				732B89AB25ED5DFA009455D4 /* CoreDataService.swift */,
 			);
@@ -238,6 +243,15 @@
 				73EF2AEE25F6E510004E1E6D /* EventsWithSeparatorTableViewCell */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		73B2E4EB25F7891D007D5FB9 /* EventsCD */ = {
+			isa = PBXGroup;
+			children = (
+				73B2E4EC25F78946007D5FB9 /* EventsCD+CoreDataClass.swift */,
+				73B2E4ED25F78946007D5FB9 /* EventsCD+CoreDataProperties.swift */,
+			);
+			path = EventsCD;
 			sourceTree = "<group>";
 		};
 		73C5664825E8012B00A27376 = {
@@ -518,11 +532,13 @@
 				7323F5AB25E94417004E8406 /* PostRequest.swift in Sources */,
 				731E9A7325EEBCFA002C4CA6 /* CommonService.swift in Sources */,
 				73EA472725F5728A00090936 /* DateManager.swift in Sources */,
+				73B2E4EE25F78946007D5FB9 /* EventsCD+CoreDataClass.swift in Sources */,
 				73EA473125F58B3300090936 /* Date+Extention.swift in Sources */,
 				7310756E25F4575500390D5D /* EventsDetails.swift in Sources */,
 				7323F5A325E943F7004E8406 /* GetRequest.swift in Sources */,
 				73EA472C25F5815700090936 /* UINavigationBar+Extention.swift in Sources */,
 				73C5669925E80AD700A27376 /* AuthenticationViewController.swift in Sources */,
+				73B2E4EF25F78946007D5FB9 /* EventsCD+CoreDataProperties.swift in Sources */,
 				73C5665F25E8012B00A27376 /* Tamo.xcdatamodeld in Sources */,
 				732C2A3425F525B500C77DB4 /* EventsTableViewCell.swift in Sources */,
 			);

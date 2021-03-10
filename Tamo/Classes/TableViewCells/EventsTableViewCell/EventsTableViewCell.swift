@@ -32,7 +32,7 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     
-    func handleBottomViewElements(events: Events) {
+    func handleBottomViewElements(events: EventsCD) {
         if events.hasLabel == true {
             hasLabelViewWidthConstraint.constant = 65
             hasLabelWidthConstraint.constant = 35
@@ -73,7 +73,7 @@ class EventsTableViewCell: UITableViewCell {
         layoutIfNeeded()
     }
     
-    func setUpCell(events: Events) {
+    func setUpCell(events: EventsCD) {
         eventTypeLabel.text = events.eventType
         eventSubjectLabel.text = events.eventSubject
         eventAddressLabel.text = events.eventAddress
