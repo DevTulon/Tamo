@@ -21,8 +21,8 @@ class TopCollectionViewCell: UICollectionViewCell {
             dateLabel.textColor = .white
             dayNameLabel.textColor = .white
         } else {
-            dateLabel.textColor = UIColor(red: 77.0/255.0, green: 118/255.0, blue: 142/255.0, alpha: 1.0)
-            dayNameLabel.textColor = UIColor(red: 77.0/255.0, green: 118/255.0, blue: 142/255.0, alpha: 1.0)
+            dateLabel.textColor = .topScrollerDateTextColor
+            dayNameLabel.textColor = .topScrollerDateTextColor
         }
     }
     

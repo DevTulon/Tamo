@@ -108,11 +108,16 @@ class EventsViewController: UIViewController {
         button.clipsToBounds = true
         button.imageView?.contentMode = .scaleAspectFit
         //print("(user?.avatar)! \((user?.avatar)!)")
-        let imageData = try? Data(contentsOf: URL(string : "https://www.w3schools.com/howto/img_avatar.png")!)
-        //let imageData = try? Data(contentsOf: URL(string : (user?.avatar)!)!)
-
+        //let imageData = try? Data(contentsOf: URL(string : "https://www.w3schools.com/howto/img_avatar.png")!)
+        let imageData = try? Data(contentsOf: URL(string : (user?.avatar)!)!)
         if let imageData = imageData, let image =  UIImage(data: imageData)?.resizeImage(to: button.frame.size) {
             button.setBackgroundImage(image, for: .normal)
+        } else {
+            button.titleLabel?.font =  UIFont(name: "Helvetica-Bold", size: 12)
+            button.setTitleColor(.topScrollerDateTextColor, for: .normal)
+            let firstLetterOfFirstName = self.user?.firstName!.prefix(1).uppercased()
+            let firstLetterOfLastName = self.user?.lastName!.prefix(1).uppercased()
+            button.setTitle("\(String(describing: firstLetterOfFirstName!))\(String(describing: firstLetterOfLastName!))", for: .normal)
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         
