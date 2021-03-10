@@ -41,7 +41,7 @@ class EventsViewController: UIViewController {
                 }
                 UserDefaults.standard.removeObject(forKey: "PreviousEventsEndTime")
                 for events in eventsList {
-                    let randomNum = Int(arc4random_uniform(49) + 10)
+                    let randomNum = Int(arc4random_uniform(89) + 10)
                     let startTime = DateManager.shared.getStartTime(events: events)
                     let endTime = DateManager.shared.getEndTime(startTm: startTime, randomNum: randomNum)
                     
@@ -211,7 +211,7 @@ class EventsViewController: UIViewController {
     }
     
     func checkCurrentEvent() {
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { (timer) in
             //check current event
             DispatchQueue.main.async {
                 self.eventsArray.removeAll()
